@@ -83,8 +83,9 @@ ggplot(actors, aes(x = `Number of Movies`, y = `Total Gross`)) +
 # - Store it as a variable named `u`
 
 u <- read_csv("...")
+library(dplyr) # for glimpse() and mutate()
+glimpse(u)
 
-library(dplyr)      # for mutate to change the dates and group_by & summarize
 library(lubridate)  # to encode the dates
 
 u_daily <- u |>
@@ -92,6 +93,7 @@ u_daily <- u |>
   group_by(Date) |>
   summarize(mean_delay = mean(Delay))
 
+glimpse(u_daily)
 ggplot(u_daily, aes(x = Date, y = mean_delay)) +
   geom_line() +
   labs(
